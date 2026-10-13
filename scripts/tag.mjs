@@ -11,7 +11,7 @@ function run(command, args, capture = false) {
 const version = process.argv[2]?.replace(/^v/, '');
 if (process.argv.length !== 3 || !/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(version ?? '') ||
     version.split('.').some(part => Number(part) > 65535)) {
-  throw new Error('用法：node scripts/tag.mjs 0.2.4（每段版本号不超过 65535）。');
+  throw new Error('用法：node scripts/tag.mjs <版本号>（如 1.2.3，每段版本号不超过 65535）。');
 }
 const tag = `v${version}`;
 if (run('git', ['status', '--porcelain'], true)) throw new Error('工作区有未提交的文件，请先提交或自行处理后再创建 tag。');

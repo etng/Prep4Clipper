@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Prep4Clipper · 剪藏前整理",
-  "version": "0.2.3",
+  "version": "0.2.5",
   "description": "自动整理文章标题与 Urvanov / Crayon 代码块，方便阅读和 Obsidian Web Clipper 剪藏。",
   "icons": {
     "16": "icons/icon-16.png",

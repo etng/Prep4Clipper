@@ -9,7 +9,7 @@ export const manifest = JSON.parse(readFileSync(resolve(extension, 'manifest.jso
 if (manifest.manifest_version !== 3) throw new Error('只支持 Manifest V3。');
 if (!/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.test(manifest.version) ||
     manifest.version.split('.').some(part => Number(part) > 65535)) {
-  throw new Error('version 必须是三个不超过 65535 的整数，如 0.2.3。');
+  throw new Error('version 必须是三个不超过 65535 的整数，如 1.2.3。');
 }
 
 // 只收集声明的运行资源，避免把开发文件或本地配置打包进去。

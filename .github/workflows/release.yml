@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: '已有的版本 tag，如 v0.2.3'
+        description: '已有的版本 tag，格式为 vX.Y.Z'
         required: true
         type: string
 

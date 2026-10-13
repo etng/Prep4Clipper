@@ -50,11 +50,11 @@ node scripts/package.mjs
 先提交本次功能改动与 `CHANGELOG.md`，确保工作区干净，再在仓库根目录运行：
 
 ```sh
-node scripts/tag.mjs 0.2.4
-git push --atomic origin main v0.2.4
+node scripts/tag.mjs 0.2.6
+git push --atomic origin main v0.2.6
 ```
 
-版本参数也可写成 `v0.2.4`。脚本更新 `extension/manifest.json` 的 `version`，运行检查，仅提交 manifest 的版本变更，再创建带说明的 tag。无需手工改 manifest，也不会自动推送。若版本已经一致（例如首次发布），直接验证并创建 tag。已有 tag、版本倒退或未提交的文件会被拒绝。使用普通 `git tag` 会绕过这个脚本，建议始终使用脚本。
+版本参数也可写成 `v0.2.6`。脚本更新 `extension/manifest.json` 的 `version`，运行检查，仅提交 manifest 的版本变更，再创建带说明的 tag。无需手工改 manifest，也不会自动推送。若版本已经一致（例如首次发布），直接验证并创建 tag。已有 tag、版本倒退或未提交的文件会被拒绝。使用普通 `git tag` 会绕过这个脚本，建议始终使用脚本。
 
 ## GitHub Actions 发布
 

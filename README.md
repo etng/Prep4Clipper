@@ -47,8 +47,8 @@ node scripts/package.mjs
 `dist/` 是自动生成的本地产物，已由 Git 忽略。提交和 PR 会执行检查。发布新版本时运行：
 
 ```sh
-node scripts/tag.mjs 0.2.4
-git push --atomic origin main v0.2.4
+node scripts/tag.mjs 0.2.6
+git push --atomic origin main v0.2.6
 ```
 
 脚本自动更新 manifest、验证并提交版本变更、创建 tag；推送后 GitHub Actions 自动发布 ZIP 和 SHA-256 校验文件到 Release，无需手工提交 ZIP。
