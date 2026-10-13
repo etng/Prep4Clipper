@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prism 配色</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h1>Prism 配色</h1>
+  <label for="theme">代码块主题</label>
+  <select id="theme" disabled>
+    <option value="auto">跟随页面</option>
+    <option value="light">浅色</option>
+    <option value="dark">深色</option>
+    <option value="tomorrow">Tomorrow Night</option>
+    <option value="solarized">Solarized Light</option>
+  </select>
+  <p id="status" class="hint" role="status" aria-live="polite">代码块会自动整理，直接使用 Web Clipper 即可。</p>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Prep4Clipper · 剪藏前整理",
+  "version": "0.2.3",
+  "description": "自动整理文章标题与 Urvanov / Crayon 代码块，方便阅读和 Obsidian Web Clipper 剪藏。",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": ["storage"],
+  "content_scripts": [{
+    "matches": ["http://*/*", "https://*/*"],
+    "js": ["prism-config.js", "vendor/prism.js", "normalize.js", "title.js", "auto.js"],
+    "run_at": "document_end"
+  }],
+  "action": {
+    "default_title": "文章修整 · Prism 配色",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    },
+    "default_popup": "popup.html"
+  }
+}

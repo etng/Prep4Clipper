@@ -1,0 +1,50 @@
+name: 发布
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: '已有的版本 tag，如 v0.2.3'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+    steps:
+      - name: 校验 tag 格式
+        run: |
+          [[ "$RELEASE_TAG" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: refs/tags/${{ inputs.tag || github.ref_name }}
+          persist-credentials: false
+      - name: 检查源码与浏览器行为
+        run: node scripts/check.mjs
+      - name: 校验版本并打包
+        run: node scripts/package.mjs "$RELEASE_TAG"
+      - name: 发布安装包
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          cat > "$RUNNER_TEMP/release-notes.md" <<'EOF'
+          下载本 Release 的 `prep4clipper-版本号.zip` 并解压，在 Chrome / Edge 扩展管理页开启开发者模式，加载直接包含 `manifest.json` 的目录。
+
+          同名 `.sha256` 文件可用于验证安装包。版本变化见仓库 `CHANGELOG.md`，安装与使用方法见 `README.md`。
+          EOF
+          gh release create "$RELEASE_TAG" dist/*.zip dist/*.sha256 \
+            --verify-tag --title "Prep4Clipper $RELEASE_TAG" \
+            --notes-file "$RUNNER_TEMP/release-notes.md"

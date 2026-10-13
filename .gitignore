@@ -1,0 +1,15 @@
+# 本地产物与系统文件
+/dist/
+.DS_Store
+__MACOSX/
+*.log
+
+# 本地工具与配置
+node_modules/
+.idea/
+.vscode/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
